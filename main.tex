@@ -166,7 +166,7 @@ It's important to notice that these equations are valid only in the neighborhood
 The Ellaume formalism consists of keeping terms up to the second order of the inverse of the electron energy [1] in the equations of motion. This means that terms like $x'/B\rho$ and $y'/B\rho$ are kept on the equations. Furthermore, a first-order Taylor expansion is done for the magnetic fields near the undulator axis and it's assumed that the field integrals on the axis are zero. As a consequence of this second-order approximation, the transverse motion of the electrons near the axis is taken into account to calculate the final kicks due to the presence of the ID. Then, as long as the field integrals are zero the kicks are given by:
 
 \begin{equation}
-\Delta x'(x,y) = \frac{1}{2R^2}\int_{-\infty}^{\infty} \frac{\partial \Phi}{\partial x}(x,y,z) \,dz'
+\Delta x'(x,y) = \frac{-1}{2R^2}\int_{-\infty}^{\infty} \frac{\partial \Phi}{\partial x}(x,y,z) \,dz'
 \end{equation}
 
 \begin{equation}
@@ -213,14 +213,14 @@ Calculating the integrals over the whole ID, we have the following expressions f
 \end{equation}
 
 
-Now, it's possible to perform Taylor expansion up to the second order on the variables $x$ and $y$, except for the $\sinh(2k_yy)$ term, which was expanded up to the third order. By doing this, we obtain the final expressions for the kicks:
+Now, it's possible to perform Taylor expansion up to the first order on the variables $x$ and $y$. By doing this, we obtain the final expressions for the kicks:
 
 \begin{equation}
-\Delta x' = \frac{-k_x^2}{k_z^2}\frac{LB_0^2}{4R^2}\bigg(2k_z^2y^2+1+\cos(k_z\theta)+\frac{k_x^2}{k_z^2+k_x^2}\left(1-\cos(k_z\theta)\right)\bigg)\bigg(x-\frac{k_x^2x^3}{2}\bigg)
+\Delta x' = \frac{k_x^2}{k_z^2}\frac{LB_0^2}{4R^2}\bigg(1+\cos(k_z\theta)+\frac{k_x^2}{k_z^2+k_x^2}\left(1-\cos(k_z\theta)\right)\bigg)x
 \end{equation}
 
 \begin{equation}
-\Delta y' = -\frac{k_z^2+k_x^2}{k_z^2}\frac{LB_0^2}{4R^2}\bigg(1-x^2\left(\frac{k_z^2k_x^2}{k_z^2+k_x^2}\right)\bigg)\bigg(2y +\frac{4\sqrt{k_x^2+k_z^2}}{3}y^3\bigg)
+\Delta y' = -\frac{k_z^2+k_x^2}{k_z^2}\frac{LB_0^2}{2R^2}y
 \end{equation}
 
 \section{Results}
