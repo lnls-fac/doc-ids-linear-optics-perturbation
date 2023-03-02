@@ -1,0 +1,231 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{physics}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage{indentfirst}
+\usepackage{todonotes}
+\title{Kickmap equations for APU devices}
+\author{}
+\date{February 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\par This document aims to show how it is possible to obtain analytical expressions for the kickmaps of APU devices using the Ellaume formalism.
+
+\section{Fields}
+\subsection{Magnetic field from one cassette}
+We begin by obtaining an analytical expression for the magnetic field of an APU.
+Regarding Maxwell's equations for free current regions, we have:
+\begin{equation}
+\nabla \times \vec{B} = 0
+\end{equation}
+
+\begin{equation}
+\nabla \cdot \vec{B} = 0
+\end{equation}
+
+This allows us to define a scalar potential that satisfies Laplace's equation.
+
+\begin{equation}
+\nabla^{2} \phi = 0
+\end{equation}
+
+And $\vec{B}$ is given by:
+\begin{equation}
+B = -\nabla \phi
+\end{equation}
+
+Solving Laplace's equation using the method of separation of variables we have the following equation:
+
+\begin{equation}
+\phi = X(x)Y(y)Z(z)
+\end{equation}
+
+In which $X$, $Y$ and $Z$ satisfy:
+
+\begin{equation}
+X(x) = A\cos{k_xx} + B\sin{k_xx}
+\end{equation}
+
+\begin{equation}
+Y(y) = Ce^{k_yy} + De^{-k_yy}
+\end{equation}
+
+\begin{equation}
+Z(z) = E\cos{k_zz} + F\sin{k_zz}
+\end{equation}
+
+If:
+
+\begin{equation}
+k_{y}^2 = k_{x}^2 + k_{z}^2
+\end{equation}
+
+Now, let's consider the solution for only one cassette in the first place. Our approach considers a continuous variation of the magnetization, which implies a continuous variation also for the potential. Considering that the cassette plane is at the origin ($y=0$), we can define the following boundary condition:
+
+\begin{equation}
+\phi(x, 0, z) = -A \sin{\left(\frac{2 \pi}{\lambda}z\right)} \cos{\left(\frac{2 \pi}{\eta W}x\right)}
+\label{eq:phi}
+\end{equation}
+
+In the above equation, $\eta$ is an arbitrary number, $\lambda$ is the undulator period
+and $W$ is the width of the magnetic blocks.
+
+The second boundary condition follows from the fact that the field must be zero far from the cassette, and as we are interested in the region above the plane, it follows:
+
+\begin{equation}
+\phi(x, \infty, z) = 0
+\label{eq:far}
+\end{equation}
+
+Then the final form of the potential becomes:
+
+\begin{equation}
+\phi(x, y, z) = -Ae^{-k_yy}\cos{\left(k_xx\right)}\sin{\left(k_zz\right)}
+\label{eq:phifinal}
+\end{equation}
+
+With:
+\begin{equation}
+k_{z} = \frac{2\pi}{\lambda}
+\end{equation}
+
+\begin{equation}
+k_{x} = \frac{2\pi}{\eta W}
+\end{equation}
+
+Calculating the gradient of the potential we have the following field components:
+
+\begin{equation}
+B_y = -Ak_ye^{-k_yy}\cos(k_xx)\sin(k_zz)
+\end{equation}
+\begin{equation}
+B_x = -Ak_xe^{-k_yy}\sin(k_xx)\sin(k_zz)
+\end{equation}
+\begin{equation}
+B_z = Ak_ze^{-k_yy}\cos(k_xx)\cos(k_zz)
+\end{equation}
+
+\subsection{Magnetic field from two cassettes}
+Now we already know how to calculate the magnetic field from one cassette located at the plane $y=0$ we can shift this field to $\pm gap/2$ and get the field of the whole ID. Then, the field generated  by the bottom cassette, considering the potential given by \ref{eq:phifinal} is:
+
+\begin{equation}
+B_{yb} = -Ak_ye^{-k_y\left(y + g/2\right)}\cos(k_xx)\sin(k_zz)
+\end{equation}
+\begin{equation}
+B_{xb} = -Ak_xe^{-k_y\left(y + g/2\right)}\sin(k_xx)\sin(k_zz)
+\end{equation}
+\begin{equation}
+B_{zb} = Ak_ze^{-k_y\left(y + g/2\right)}\cos(k_xx)\cos(k_zz)
+\end{equation}
+
+For the top cassette, we must consider the following potential:
+\begin{equation}
+\phi(x, y, z) = Ae^{k_yy}\cos{\left(k_xx\right)}\sin{\left(k_zz -k_z\theta\right)}
+\label{eq:phitop}
+\end{equation}
+
+This potential is taking into account the phase shifts $\theta$ allowed by the APU. The above potential implies in the field components shown below.
+
+\begin{equation}
+B_{yt} = -Ak_ye^{k_y\left(y - g/2\right)}\cos(k_xx)\sin(k_zz-k_z\theta)
+\end{equation}
+\begin{equation}
+B_{xt} = Ak_xe^{k_y\left(y - g/2\right)}\sin(k_xx)\sin(k_zz-k_z\theta)
+\end{equation}
+\begin{equation}
+B_{zt} = -Ak_ze^{k_y\left(y - g/2\right)}\cos(k_xx)\cos(k_zz-k_z\theta)
+\end{equation}
+
+The resultant field is then:
+
+\begin{equation}
+B_{y} = -\frac{B_0}{2}\cos(k_xx)\left[e^{-k_yy}\sin(k_zz) + e^{k_yy}\sin(k_zz -k_z\theta)\right]
+\label{eq:by}
+\end{equation}
+\begin{equation}
+B_{x} = -\frac{B_0}{2}\frac{k_x}{k_y}\sin(k_xx)\left[e^{-k_yy}\sin(k_zz) - e^{k_yy}\sin(k_zz -k_z\theta)\right]
+\label{eq:bx}
+\end{equation}
+\begin{equation}
+B_{z} = \frac{B_0}{2}\frac{k_z}{k_y}\cos(k_xx)\left[e^{-k_yy}\cos(k_zz) - e^{k_yy}\cos(k_zz -k_z\theta)\right]
+\end{equation}
+
+With $B_0$ given by:
+\begin{equation}
+B_0 = 2Ak_ye^{-k_yg/2}
+\end{equation}
+
+It's important to notice that these equations are valid only in the neighborhood of the axis of the undulator.
+
+\section{Ellaume Formalism}
+\subsection{Brief introduction}
+The Ellaume formalism consists of keeping terms up to the second order of the inverse of the electron energy [1] in the equations of motion. This means that terms like $x'/B\rho$ and $y'/B\rho$ are kept on the equations. Furthermore, a first-order Taylor expansion is done for the magnetic fields near the undulator axis and it's assumed that the field integrals on the axis are zero. As a consequence of this second-order approximation, the transverse motion of the electrons near the axis is taken into account to calculate the final kicks due to the presence of the ID. Then, as long as the field integrals are zero the kicks are given by:
+
+\begin{equation}
+\Delta x'(x,y) = \frac{1}{2R^2}\int_{-\infty}^{\infty} \frac{\partial \Phi}{\partial x}(x,y,z) \,dz'
+\end{equation}
+
+\begin{equation}
+\Delta y'(x,y) = \frac{-1}{2R^2}\int_{-\infty}^{\infty} \frac{\partial \Phi}{\partial y}(x,y,z) \,dz'
+\end{equation}
+
+$R$ is the magnetic rigidity, and $\Phi$ is called Kickmap potential, its definition is:
+
+\begin{equation}
+\Phi(x,y,z) \equiv \left(\int_{-\infty}^{z} B_x(x,y,z') \,dz'\right)^2 + \left(\int_{-\infty}^{z} B_y(x,y,z') \,dz'\right)^2
+\end{equation}
+
+\subsection{Calculating kickmaps for APU devices}
+ The kickmap potential for the fields given by equations \ref{eq:by} and \ref{eq:bx} is:
+\begin{equation}
+    \begin{split}
+        \Phi(x,y,z) = & \left(\frac{B_0}{2k_z}\right)^2\bigg[e^{2k_yy}\cos^2(k_zz-k_z\theta)\left(cos^2(k_xx)+\frac{k_x^2}{k_y^2}\sin^2(k_xx)\right) \\
+        & + e^{-2k_yy}\cos^2(k_zz)\left(cos^2(k_xx)+\frac{k_x^2}{k_y^2}\sin^2(k_xx)\right) \\
+        & + 2\cos(k_zz)\cos(k_zz - k_z\theta)\left(cos^2(k_xx)-\frac{k_x^2}{k_y^2}\sin^2(k_xx)\right)\bigg]
+    \end{split}
+\end{equation}
+
+Thus, its derivatives are:
+\begin{equation}
+\begin{split}
+\frac{\partial\Phi}{\partial x} = \frac{-k_xB_0^2}{2k_z^2}\cos(k_xx)\sin(k_xx) & \bigg[\left(1-\frac{k_x^2}{k_y^2}\right)\left(e^{2k_yy}\cos^2(k_zz-k_z\theta) + e^{-2k_yy}\cos^2(k_zz)\right) \\
+ & + \left(1+\frac{k_x^2}{k_y^2}\right)\left(2\cos(k_zz)\cos(k_zz\theta)\right)\bigg]
+\end{split}
+\end{equation}
+
+\begin{equation}
+\frac{\partial\Phi}{\partial y} = \frac{k_yB_0^2}{2k_z^2}\bigg[\left(\cos^2(k_xx)+\frac{k_x^2}{k_y^2}\sin^2(k_xx)\right)\left(e^{2k_yy}\cos^2(k_zz-k_z\theta) - e^{-2k_yy}\cos^2(k_zz)\right)\bigg]
+\end{equation}
+ 
+Calculating the integrals over the whole ID, we have the following expressions for the kicks:
+
+\begin{equation}
+\Delta x' = \frac{k_xLB_0^2}{4R^2k_z^2}\cos(k_xx)\sin(k_xx)\bigg[\left(1-\frac{k_x^2}{k_y^2}\right)\cosh(2k_yy) + \left(1+\frac{k_x^2}{k_y^2}\right)\cos(k_z\theta) \bigg]
+\end{equation}
+
+
+\begin{equation}
+\Delta y' = \frac{-k_yLB_0^2}{4R^2k_z^2}\sinh(2k_yy)\bigg(\cos^2(k_xx)+\frac{k_x^2}{k_y^2}\sin^2(k_xx)\bigg)
+\end{equation}
+
+
+Now, it's possible to perform Taylor expansion up to the second order on the variables $x$ and $y$, except for the $\sinh(2k_yy)$ term, which was expanded up to the third order. By doing this, we obtain the final expressions for the kicks:
+
+\begin{equation}
+\Delta x' = \frac{-k_x^2}{k_z^2}\frac{LB_0^2}{4R^2}\bigg(2k_z^2y^2+1+\cos(k_z\theta)+\frac{k_x^2}{k_z^2+k_x^2}\left(1-\cos(k_z\theta)\right)\bigg)\bigg(x-\frac{k_x^2x^3}{2}\bigg)
+\end{equation}
+
+\begin{equation}
+\Delta y' = -\frac{k_z^2+k_x^2}{k_z^2}\frac{LB_0^2}{4R^2}\bigg(1-x^2\left(\frac{k_z^2k_x^2}{k_z^2+k_x^2}\right)\bigg)\bigg(2y +\frac{4\sqrt{k_x^2+k_z^2}}{3}y^3\bigg)
+\end{equation}
+
+\section{Results}
+\subsection{Impact of roll-off on kickmaps}
+
+\subsection{Focusing}
+
+\end{document}
