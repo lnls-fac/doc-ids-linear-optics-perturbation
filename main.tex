@@ -216,7 +216,7 @@ Calculating the integrals over the whole ID, we have the following expressions f
 Now, it's possible to perform Taylor expansion up to the first order on the variables $x$ and $y$. By doing this, we obtain the final expressions for the kicks:
 
 \begin{equation}
-\Delta x' = \frac{k_x^2}{k_z^2}\frac{LB_0^2}{4R^2}\bigg(1+\cos(k_z\theta)+\frac{k_x^2}{k_z^2+k_x^2}\left(1-\cos(k_z\theta)\right)\bigg)x
+\Delta x' = \frac{k_x^2}{k_z^2}\frac{LB_0^2}{4R^2}\bigg(1+\cos(k_z\theta)-\frac{k_x^2}{k_z^2+k_x^2}\left(1-\cos(k_z\theta)\right)\bigg)x
 \label{eq:kickx}
 \end{equation}
 
@@ -231,12 +231,12 @@ Now, it's possible to perform Taylor expansion up to the first order on the vari
 By looking at equations \ref{eq:kickx} and \ref{eq:kicky} it is possible to see that while there is a focusing effect on the plane $y$ there is a defocusing on the $x$ plane.
 The changes in tune are given by:
 \begin{equation}
-\Delta \nu_{x} = -\beta \frac{k_x^2}{k_z^2}\frac{L^2B_0^2}{16\pi R^2}\bigg(1+\cos(k_z\theta)+\frac{k_x^2}{k_z^2+k_x^2}\left(1-\cos(k_z\theta)\right)\bigg)
+\Delta \nu_{x} = -\beta_{x} \frac{k_x^2}{k_z^2}\frac{L^2B_0^2}{16\pi R^2}\bigg(1+\cos(k_z\theta)-\frac{k_x^2}{k_z^2+k_x^2}\left(1-\cos(k_z\theta)\right)\bigg)
 \end{equation}
 
 
 \begin{equation}
-\Delta \nu_{y} = \beta \frac{k_z^2+k_x^2}{k_z^2}\frac{L^2B_0^2}{8\pi R^2}
+\Delta \nu_{y} = \beta_{y} \frac{k_z^2+k_x^2}{k_z^2}\frac{L^2B_0^2}{8\pi R^2}
 \end{equation}
 
 \end{document}
